@@ -99,24 +99,22 @@
                             <div data-filename="pages/Home" data-linenumber="73" data-visual-selector-id="pages/Home73" class="min-h-screen bg-white font-heebo" dir="rtl" style="background-color: rgb(255, 251, 235);">
                                 <section data-filename="pages/Home" data-linenumber="75" data-visual-selector-id="pages/Home75" class="py-20 relative overflow-hidden">
                                     <div data-filename="pages/Home" data-linenumber="76" data-visual-selector-id="pages/Home76" class="max-w-5xl mx-auto px-6 text-center relative z-10">
-<div style="position: relative; display: inline-block; padding: 40px;">
+<div id="headline-wrapper" style="position: relative; display: inline-block; padding: 20px;">
   <!-- הכותרת -->
-  <h1 style="font-size: 3rem; font-weight: 900; color: #14b8a6;
-  ; margin: 0; position: relative; z-index: 2;">
-    במח
-	<span style="font-size: 3.5rem; color: #800000;">שווה</span> 
-	שנייה
+  <h1 id="headline" style="font-size: 3rem; font-weight: 900; color: #14b8a6; margin: 0; position: relative; z-index: 2;">
+    במח <span style="font-size: 3.5rem; color: #800000;">שווה</span> שנייה
   </h1>
-  <!-- האליפסה -->
-  <svg width="100%" height="100%" viewBox="0 0 400 120" 
-       style="position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;">
-    <ellipse cx="200" cy="60" rx="180" ry="50" 
+
+  <!-- מיכל SVG ריק, נצייר בו אליפסה דינמית -->
+  <svg id="ellipse-svg" style="position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;" xmlns="http://www.w3.org/2000/svg">
+    <ellipse id="animated-ellipse"
              fill="none" stroke="#0ea5e9" stroke-width="4"
              stroke-dasharray="1000" stroke-dashoffset="1000">
-      <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s" fill="freeze"/>
+      <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s" fill="freeze" />
     </ellipse>
   </svg>
 </div>
+
                                         <h2 data-filename="pages/Home" data-linenumber="81" data-visual-selector-id="pages/Home81" class="text-2xl md:text-3xl mb-8 font-bold" style="color: rgb(20, 184, 166);">ערכת קלפים לזיהוי ואתגור הטיות חשיבה ולפיתוח חשיבה גמישה ומאוזנת</h2>
 <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto font-medium leading-relaxed" style="color: rgb(120, 113, 108);">
   כלי טיפולי <strong>פרקטי חווייתי ויעיל</strong> לשינוי דפוסי חשיבה שליליים אצל מתבגרים, צעירים ומבוגרים
@@ -451,6 +449,35 @@
       priceSpan.textContent = '120 ₪';
     }
   }
+  
+    function updateEllipse() {
+    const headline = document.getElementById('headline');
+    const svg = document.getElementById('ellipse-svg');
+    const ellipse = document.getElementById('animated-ellipse');
+    const rect = headline.getBoundingClientRect();
+
+    // הגדרות מידות
+    const paddingX = 30;
+    const paddingY = 20;
+
+    const width = rect.width + paddingX * 2;
+    const height = rect.height + paddingY * 2;
+
+    svg.setAttribute('width', width);
+    svg.setAttribute('height', height);
+
+    svg.style.width = width + 'px';
+    svg.style.height = height + 'px';
+
+    ellipse.setAttribute('cx', width / 2);
+    ellipse.setAttribute('cy', height / 2);
+    ellipse.setAttribute('rx', rect.width / 2 + paddingX);
+    ellipse.setAttribute('ry', rect.height / 2 + paddingY);
+  }
+
+  // הפעל כשהדף נטען ובכל שינוי גודל
+  window.addEventListener('load', updateEllipse);
+  window.addEventListener('resize', updateEllipse);
 </script>
 
 

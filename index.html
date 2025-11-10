@@ -102,12 +102,27 @@
     במח<span style="font-size: 3.5rem; color: #14b8a6;">שווה</span> שנייה
   </h1>
 
-  <!-- מיכל SVG ריק, נצייר בו אליפסה דינמית -->
-  <svg id="ellipse-svg" style="position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;" xmlns="http://www.w3.org/2000/svg">
-    <ellipse id="animated-ellipse"
-             fill="none" stroke="#0ea5e9" stroke-width="4n
-             stroke-dasharray="1000" stroke-dashoffset="1000">
-      <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="2s" fill="freeze" />
+  <!-- אליפסה אנימטיבית -->
+  <svg id="ellipse-svg"
+       width="400" height="120"
+       viewBox="0 0 400 120"
+       style="position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;"
+       xmlns="http://www.w3.org/2000/svg">
+    <ellipse
+      cx="200" cy="60"
+      rx="180" ry="45"
+      fill="none"
+      stroke="#0ea5e9"
+      stroke-width="4"
+      stroke-dasharray="1000"
+      stroke-dashoffset="1000">
+      <animate
+        attributeName="stroke-dashoffset"
+        from="1000"
+        to="0"
+        dur="2s"
+        fill="freeze"
+        begin="0s" />
     </ellipse>
   </svg>
 </div>

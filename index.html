@@ -2561,20 +2561,20 @@
                                   <circle cx="17" cy="18" r="2"></circle>
                                   <circle cx="7" cy="18" r="2"></circle>
                                 </svg>
-                                <h4 data-filename="pages/Home" data-linenumber="286" data-visual-selector-id="pages/Home286" class="font-bold">משלוח עד הבית</h4>
-                                <p data-filename="pages/Home" data-linenumber="287" data-visual-selector-id="pages/Home287" class="text-sm font-medium" style="color: rgb(120, 113, 108);">+ 30 ₪</p>
+                                <h4 class="font-bold">משלוח עד הבית</h4>
+                                <p class="text-sm font-medium" style="color: rgb(120, 113, 108);">+ 30 ₪</p>
                               </div>
                               <div id="pickupOption" onclick="selectOption('pickup')" data-filename="pages/Home" data-linenumber="289" data-visual-selector-id="pages/Home289" class="cursor-pointer transition-all p-4 rounded-xl border-2" style="border-color: rgb(229, 231, 235);">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-10 h-10 mx-auto mb-2" data-filename="pages/Home" data-linenumber="294" data-visual-selector-id="pages/Home294" style="color: rgb(20, 184, 166);">
                                   <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
                                   <circle cx="12" cy="10" r="3"></circle>
                                 </svg>
-                                <h4 data-filename="pages/Home" data-linenumber="295" data-visual-selector-id="pages/Home295" class="font-bold">איסוף עצמי</h4>
-                                <p data-filename="pages/Home" data-linenumber="296" data-visual-selector-id="pages/Home296" class="text-sm font-medium" style="color: rgb(120, 113, 108);">ממשמר דוד</p>
+                                <h4  class="font-bold">איסוף עצמי</h4>
+                                <p  class="text-sm font-medium" style="color: rgb(120, 113, 108);">ממשמר דוד</p>
                               </div>
                             </div>
                           </div>
-                          <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 w-full text-white py-7 text-2xl font-black rounded-lg shadow-lg transform hover:scale-105 transition-transform" data-filename="pages/Home" data-linenumber="308" data-visual-selector-id="pages/Home308" style="background-color: #109620;">
+                          <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary hover:bg-primary/90 h-10 px-4 w-full text-white py-7 text-2xl font-black rounded-lg shadow-lg transform hover:scale-105 transition-transform" onclick="handlePurchase()" style="background-color: #109620;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart w-7 h-7 ml-3" data-filename="pages/Home" data-linenumber="312" data-visual-selector-id="pages/Home312">
                               <circle cx="8" cy="21" r="1"></circle>
                               <circle cx="19" cy="21" r="1"></circle>
@@ -2595,6 +2595,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox.min.js"></script>
     <script>
       function selectOption(option) {
+	    selectedOption = option;
         const deliveryDiv = document.getElementById('deliveryOption');
         const pickupDiv = document.getElementById('pickupOption');
         if (option === 'delivery') {
@@ -2609,6 +2610,15 @@
           deliveryDiv.style.borderColor = 'rgb(229, 231, 235)';
         }
       }
+	  
+	  function handlePurchase() {
+  const urls = {
+    delivery: "https://pay.grow.link/5e5c787a3ad192413bb14d475e225f07-MjgwODI5MA",
+    pickup: "https://pay.grow.link/494b8b388be23bf9754b07671d2e2b04-MjgwODE2Mw"
+  };
+
+  window.location.href = urls[selectedOption];
+}
 
       function updateEllipse() {
         const headline = document.getElementById('headline');
